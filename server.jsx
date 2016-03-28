@@ -4,27 +4,23 @@ import { renderToString }        from 'react-dom/server'
 import { RoutingContext, match } from 'react-router';
 import createLocation            from 'history/lib/createLocation';
 import routes                    from 'routes';
-import { createStore, 
-  combineReducers, 
+import { 
+  createStore, 
   applyMiddleware }              from 'redux';
 import { Provider }              from 'react-redux';
-import * as reducers             from 'reducers'
-
-// import promiseMiddleware         from 'lib/promiseMiddleware';
-// import fetchComponentData        from 'lib/fetchComponentData';
+import reducer                   from 'reducers';
 
 const app = express();
 
 // So the example quote unquote 'production mode' works
 import fs from 'fs';
 app.use('/bundle.js', function (req, res) {
-    return fs.createReadStream('./dist/bundle.js').pipe(res);
+  return fs.createReadStream('./dist/bundle.js').pipe(res);
 });
 
 app.use((req, res) => {
 
   const location = createLocation(req.url);
-  const reducer  = combineReducers(reducers);
   const store    = createStore(reducer);
         
 
@@ -41,7 +37,6 @@ app.use((req, res) => {
       </Provider>
     );
     const initialState = store.getState();
-
     const componentHTML = renderToString(InitialComponent);
     const HTML = `
       <!DOCTYPE html>

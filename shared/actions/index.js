@@ -1,20 +1,9 @@
-export const CREATE_SCHEMA   = 'CREATE_SCHEMA';
-export const DELETE_SCHEMA   = 'DELETE_SCHEMA';
-
-export const CREATE_FIELD    = 'CREATE_FIELD';
-export const DELETE_FIELD    = 'DELETE_FIELD';
-
-export const CREATE_RELATION = 'CREATE_RELATION';
-export const DELETE_RELATION = 'DELETE_RELATION';
-
-export const MOVE_PARTICLE = 'MOVE_PARTICLE';
-
 export function createSchema(x, y, text) {
   return {
     type: CREATE_SCHEMA,
-    text: text,
-    x: x,
-    y: y
+    text,
+    x,
+    y
   };
 }
 
@@ -47,6 +36,7 @@ export function deleteRelation(text) {
     text
   };
 }
+
 export function createField(x, y, text, field_type) {
   return {
     type: CREATE_FIELD,
@@ -56,6 +46,7 @@ export function createField(x, y, text, field_type) {
     y
   };
 }
+
 export function deleteField(id) {
   return {
     type: DELETE_FIELD,
@@ -78,7 +69,7 @@ export function updateMousePos(x, y) {
     type: UPDATE_MOUSE_POS,
     x,
     y
-  }
+  };
 }
 
 export function resizeScreen(width, height) {
@@ -86,5 +77,5 @@ export function resizeScreen(width, height) {
     type: RESIZE_SCREEN,
     width,
     height
-  }
+  };
 }
